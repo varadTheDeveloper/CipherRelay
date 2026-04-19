@@ -12,6 +12,7 @@
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
+    "express-rate-limit": "^8.3.2",
     "libsodium-sumo": "^0.8.2",
     "libsodium-wrappers-sumo": "^0.8.2",
     "pg": "^8.16.3"
