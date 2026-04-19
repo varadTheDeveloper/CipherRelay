@@ -19,6 +19,9 @@ If you discover a security vulnerability, please report it privately:
 📧 [varadmodhekar101@gmail.com](mailto:varadmodhekar101@gmail.com)
 
 ---
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first.
 
 ## ⚠️ Cryptography Notice
 
