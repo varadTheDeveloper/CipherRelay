@@ -7,6 +7,8 @@ import crypto from "crypto";
 import pool from "../Db/db.js";
 import rateLimit from "express-rate-limit";
 
+
+const verifyOTP = express.Router();
 export const registerLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5, // max 5 requests per IP
@@ -16,8 +18,6 @@ export const registerLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
 });
-const verifyOTP = express.Router();
-
 function hashOtp(otp) {
   return crypto.createHash("sha256").update(otp).digest("hex");
 }
