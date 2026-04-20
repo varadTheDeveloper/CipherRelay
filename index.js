@@ -13,7 +13,7 @@ import key from "./keyBundle/Alice_Bob.js";
 const app = express();
 const port = 3000;
 const allowedOrigins = ["http://localhost:5173", "http://localhost:5174"];
-
+app.disable("x-powered-by");
 app.use((req, res, next) => {
   const origin = req.headers.origin;
 
@@ -37,7 +37,14 @@ app.use((req, res, next) => {
 
   next();
 });
-
+app.use((req, res, next) => {
+  res.set({
+    "Cache-Control": "no-store",
+    "Pragma": "no-cache",
+    "Expires": "0",
+  });
+  next();
+});
 app.use(express.json({ limit: "50kb" }));
 app.use(cookieParser());
 export async function auth(req, res, next) {
