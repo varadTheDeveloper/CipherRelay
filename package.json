@@ -2,7 +2,10 @@
   "name": "opentestudox-server",
   "version": "0.1.0",
   "description": "Backend server for Testudox, a privacy-first end-to-end encrypted messaging system powered by the Testudox Protocol.",
-  "author": " Varad Dnyaneshwar Modhekar",
+   "author": {
+    "name": "Varad Dnyaneshwar Modhekar",
+    "email": "varadmodhekar101@gmail.com"
+  },
   "license": "GPL-3.0",
   "type": "module",
   "main": "index.js",
