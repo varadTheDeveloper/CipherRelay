@@ -1,14 +1,33 @@
 {
-  "name": "api",
-  "version": "1.0.0",
-  "description": "api for maris",
-  "license": "ISC",
-  "author": "",
+  "name": "testudox-server",
+  "version": "0.1.0",
+  "description": "Backend server for Testudox, a privacy-first end-to-end encrypted messaging system powered by the Testudox Protocol.",
+  "author": " Varad Dnyaneshwar Modhekar",
+  "license": "GPL-3.0",
   "type": "module",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/varadTheDeveloper/CipherRelay.git"
   },
+
+  "keywords": [
+    "opentestudox",
+    "e2e",
+    "encryption",
+    "privacy",
+    "messaging",
+    "nodejs",
+    "secure-server"
+  ],
+
+  "scripts": {
+    "dev": "node --watch index.js",
+    "start": "node index.js",
+    "lint": "eslint ."
+  },
+
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
