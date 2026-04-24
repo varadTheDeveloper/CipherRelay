@@ -1,17 +1,40 @@
 {
-  "name": "api",
-  "version": "1.0.0",
-  "description": "api for maris",
-  "license": "ISC",
-  "author": "",
+  "name": "opentestudox-server",
+  "version": "0.1.0",
+  "description": "Backend server for Testudox, a privacy-first end-to-end encrypted messaging system powered by the Testudox Protocol.",
+   "author": {
+    "name": "Varad Dnyaneshwar Modhekar",
+    "email": "varadmodhekar101@gmail.com"
+  },
+  "license": "GPL-3.0",
   "type": "module",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/varadTheDeveloper/CipherRelay.git"
   },
+
+  "keywords": [
+    "opentestudox",
+    "e2e",
+    "encryption",
+    "privacy",
+    "messaging",
+    "nodejs",
+    "secure-server"
+  ],
+
+  "scripts": {
+    "dev": "node --watch index.js",
+    "start": "node index.js",
+    "lint": "eslint ."
+  },
+
   "dependencies": {
     "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
+    "express-rate-limit": "^8.3.2",
     "libsodium-sumo": "^0.8.2",
     "libsodium-wrappers-sumo": "^0.8.2",
     "pg": "^8.16.3"

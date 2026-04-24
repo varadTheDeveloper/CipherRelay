@@ -5,9 +5,19 @@
 import express from "express";
 import crypto from "crypto";
 import pool from "../Db/db.js";
+import rateLimit from "express-rate-limit";
+
 
 const verifyOTP = express.Router();
-
+export const registerLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 5, // max 5 requests per IP
+  message: {
+    error: "Too many accounts created from this IP, try again later."
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 function hashOtp(otp) {
   return crypto.createHash("sha256").update(otp).digest("hex");
 }
@@ -20,7 +30,7 @@ function hashToken(token) {
   return crypto.createHash("sha256").update(token).digest("hex");
 }
 
-verifyOTP.post("/user", async (req, res) => {
+verifyOTP.post("/user", registerLimiter,async (req, res) => {
   let { otp, email, deviceId, deviceName } = req.body;
 
   if (!email || !otp) {
