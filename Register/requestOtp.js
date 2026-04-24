@@ -6,7 +6,7 @@ import express from "express";
 import crypto from "crypto";
 import pool from "../Db/db.js";
 import rateLimit from "express-rate-limit";
-
+import { sendOtpEmail } from "../utils/sendOtpEmail.js";
 
 const requestOtp = express.Router();
 export const registerLimiter = rateLimit({
@@ -49,7 +49,7 @@ requestOtp.post("/user", registerLimiter, async (req, res) => {
   );
 
   console.log("OTP:", otp);
-
+await sendOtpEmail(email, otp);
   res.json({ success: true });
 });
 

@@ -2,19 +2,17 @@
   "name": "opentestudox-server",
   "version": "0.1.0",
   "description": "Backend server for Testudox, a privacy-first end-to-end encrypted messaging system powered by the Testudox Protocol.",
-   "author": {
+  "author": {
     "name": "Varad Dnyaneshwar Modhekar",
     "email": "varadmodhekar101@gmail.com"
   },
   "license": "GPL-3.0",
   "type": "module",
   "main": "index.js",
-
   "repository": {
     "type": "git",
     "url": "https://github.com/varadTheDeveloper/CipherRelay.git"
   },
-
   "keywords": [
     "opentestudox",
     "e2e",
@@ -24,14 +22,13 @@
     "nodejs",
     "secure-server"
   ],
-
   "scripts": {
     "dev": "node --watch index.js",
     "start": "node index.js",
     "lint": "eslint ."
   },
-
   "dependencies": {
+    "@aws-sdk/client-ses": "^3.1036.0",
     "cookie-parser": "^1.4.7",
     "express": "^5.2.1",
     "express-rate-limit": "^8.3.2",
