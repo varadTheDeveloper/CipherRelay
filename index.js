@@ -12,10 +12,22 @@ import pool from "./Db/db.js";
 import key from "./keyBundle/Alice_Bob.js";
 const app = express();
 const port = 3000;
-const allowedOrigins = ["http://localhost:5173", "http://localhost:5174"];
+
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://web.opentestudox.org"
+];
+
+app.disable("x-powered-by");
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
+
+  // allow no-origin (curl, mobile apps, etc.)
+  if (!origin) {
+    return next();
+  }
 
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
@@ -23,21 +35,32 @@ app.use((req, res, next) => {
 
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS",
+    "GET, POST, PUT, DELETE, OPTIONS"
   );
+
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Content-Type, Authorization,x-sender-id",
+    "Content-Type, Authorization, x-sender-id"
   );
+
   res.setHeader("Access-Control-Allow-Credentials", "true");
 
+  // handle preflight
   if (req.method === "OPTIONS") {
-    return res.sendStatus(204); // better than 200
+    return res.sendStatus(204);
   }
 
   next();
 });
 
+app.use((req, res, next) => {
+  res.set({
+    "Cache-Control": "no-store",
+    "Pragma": "no-cache",
+    "Expires": "0",
+  });
+  next();
+});
 app.use(express.json({ limit: "50kb" }));
 app.use(cookieParser());
 export async function auth(req, res, next) {
