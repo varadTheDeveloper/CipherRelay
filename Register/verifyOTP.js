@@ -134,11 +134,13 @@ verifyOTP.post("/user", registerLimiter,async (req, res) => {
   );
 
   res.cookie("session", tokenHash, {
-    httpOnly: true,
-    secure: false, // true in production
-    sameSite: "lax",
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-  });
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  domain: ".opentestudox.org",
+  path: "/",
+  maxAge: 365 * 24 * 60 * 60 * 1000,
+});
 
   res.json({
     success: true,

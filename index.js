@@ -17,22 +17,30 @@ app.disable("x-powered-by");
 app.use((req, res, next) => {
   const origin = req.headers.origin;
 
+  // allow no-origin (curl, mobile apps, etc.)
+  if (!origin) {
+    return next();
+  }
+
   if (allowedOrigins.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
 
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, OPTIONS",
+    "GET, POST, PUT, DELETE, OPTIONS"
   );
+
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Content-Type, Authorization,x-sender-id",
+    "Content-Type, Authorization, x-sender-id"
   );
+
   res.setHeader("Access-Control-Allow-Credentials", "true");
 
+  // handle preflight
   if (req.method === "OPTIONS") {
-    return res.sendStatus(204); // better than 200
+    return res.sendStatus(204);
   }
 
   next();

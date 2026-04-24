@@ -11,7 +11,7 @@ import pkg from "pg";
 // database:"maris"
 const { Pool } = pkg;
 const pool = new  Pool({
-host:"localhost",
+host:"172.31.37.249",
 port : 5432,
 user:"postgres", 
 password:"varad",
