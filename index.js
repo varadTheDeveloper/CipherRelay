@@ -10,6 +10,8 @@ import verifyOTP from "./Register/verifyOTP.js";
 import router from "./routes/keys.js";
 import pool from "./Db/db.js";
 import key from "./keyBundle/Alice_Bob.js";
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
 const port = 3000;
 const allowedOrigins = ["http://localhost:5173", "http://localhost:5174","https://web.opentestudox.org"];

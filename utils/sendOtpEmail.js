@@ -1,11 +1,9 @@
-import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
-
-const ses = new SESClient({
-  region: "eu-central-1",
-});
+import { Resend } from "resend";
+import dotenv from "dotenv";
+dotenv.config();
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function sendOtpEmail(email, otp) {
-  // ✅ STEP 1: Put your HTML template here
   const html = `
   <!DOCTYPE html>
   <html>
@@ -38,23 +36,10 @@ export async function sendOtpEmail(email, otp) {
   </html>
   `;
 
-  // SES
-  const params = {
-    Source: "no-reply@opentestudox.org",
-    Destination: {
-      ToAddresses: [email],
-    },
-    Message: {
-      Subject: {
-        Data: "Your OTP Code",
-      },
-      Body: {
-        Html: {
-          Data: html, 
-        },
-      },
-    },
-  };
-
-  await ses.send(new SendEmailCommand(params));
+  await resend.emails.send({
+    from: "no-reply@opentestudox.org", // temporary sender
+    to: email,
+    subject: "Your OTP Code",
+    html: html,
+  });
 }
