@@ -12,7 +12,7 @@ import pool from "./Db/db.js";
 import key from "./keyBundle/Alice_Bob.js";
 const app = express();
 const port = 3000;
-const allowedOrigins = ["http://localhost:5173", "http://localhost:5174"."https://web.opentestudox.org"];
+const allowedOrigins = ["http://localhost:5173", "http://localhost:5174","https://web.opentestudox.org"];
 app.disable("x-powered-by");
 app.use((req, res, next) => {
   const origin = req.headers.origin;
