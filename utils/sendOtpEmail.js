@@ -1,7 +1,7 @@
 import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
 
 const ses = new SESClient({
-  region: "ap-south-1",
+  region: "eu-central-1",
 });
 
 export async function sendOtpEmail(email, otp) {
