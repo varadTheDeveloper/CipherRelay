@@ -51,6 +51,7 @@ requestOtp.post("/user", registerLimiter, async (req, res) => {
   );
 
   console.log("OTP:", otp);
+  console.log(email)
 await sendOtpEmail(email, otp);
   res.json({ success: true });
 });
