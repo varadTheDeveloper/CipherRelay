@@ -7,6 +7,8 @@ import crypto from "crypto";
 import pool from "../Db/db.js";
 import rateLimit from "express-rate-limit";
 import { sendOtpEmail } from "../utils/sendOtpEmail.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 const requestOtp = express.Router();
 export const registerLimiter = rateLimit({

@@ -10,6 +10,8 @@ import verifyOTP from "./Register/verifyOTP.js";
 import router from "./routes/keys.js";
 import pool from "./Db/db.js";
 import key from "./keyBundle/Alice_Bob.js";
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
 const port = 3000;
 const allowedOrigins = ["http://localhost:5173", "http://localhost:5174","https://web.opentestudox.org"];
@@ -57,7 +59,7 @@ app.use(express.json({ limit: "50kb" }));
 app.use(cookieParser());
 export async function auth(req, res, next) {
   const token = req.cookies.session;
-  console.log("token", token);
+  
 
   if (!token) return res.sendStatus(401);
 
@@ -71,10 +73,10 @@ AND  s.expires_at > NOW()
     `,
     [token],
   );
-  console.log("rows", rows);
+ 
   if (!rows.length) return res.sendStatus(401);
   if (rows[0].revoked) return res.sendStatus(401);
-  console.log("hi");
+ 
   req.userId = rows[0].user_id;
   req.deviceId = rows[0].device_id;
   next();
@@ -98,7 +100,7 @@ app.use(auth);
 app.use(
   "/bundle",
   (req, res, next) => {
-    console.log("deviceId", req.params);
+   
     next();
   },
   key,
@@ -256,7 +258,7 @@ app.post("/send-message", async (req, res) => {
 });
 app.get("/next-message/:deviceId", async (req, res) => {
   const { deviceId } = req.params;
-  console.log(deviceId);
+ 
   //   // 🔹 Check device exists
   //   const device = await pool.query(
   //     "SELECT id FROM devices WHERE id = $1",
@@ -293,10 +295,7 @@ app.get("/next-message/:deviceId", async (req, res) => {
 
   res.setHeader("Content-Type", "application/octet-stream");
   res.setHeader("x-message-id", row.id);
-  console.log(
-    row.envelope,
-    "ywdwswswswswswswswswswswswswswswswswswswswswswswswswswswswswswswswswswswswswswswswsws",
-  );
+
   res.send(row.envelope);
 });
 app.post("/seen", async (req, res) => {
