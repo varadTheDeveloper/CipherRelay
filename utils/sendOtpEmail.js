@@ -37,7 +37,7 @@ export async function sendOtpEmail(email, otp) {
   `;
 
   await resend.emails.send({
-    from: "no-reply@opentestudox.org", // temporary sender
+    from: "onboarding@resend.dev", // temporary sender
     to: email,
     subject: "Your OTP Code",
     html: html,
