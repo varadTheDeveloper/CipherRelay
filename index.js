@@ -14,7 +14,7 @@ import dotenv from "dotenv";
 dotenv.config();
 const app = express();
 const port = 3000;
-const allowedOrigins = ["http://localhost:5173", "http://localhost:5174","https://web.opentestudox.org"];
+const allowedOrigins = ["http://localhost:5173","https://app.opentestudox.org","https://web.opentestudox.org"];
 app.disable("x-powered-by");
 app.use((req, res, next) => {
   const origin = req.headers.origin;
